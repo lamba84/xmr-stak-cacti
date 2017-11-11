@@ -60,7 +60,7 @@ def get_rate_dev(h_url): #get data for web interface version of xmr-stack miner,
         matchObj = re.findall(r'<th>(total.*?)</th><td> (.*?)</td><td> (.*?)</td><td> (.*?)</td></tr>', page.content, re.M|re.I|re.S)
         rtn_str= "total_2.5s:"+matchObj[0][1]+" "+"total_1m:"+matchObj[0][2]+" "+"total_15m:"+matchObj[0][3]
     except:
-        rtn_str=0
+        rtn_str="total_2.5s:0 total_1m:0 total_15m:0"
     
     return rtn_str
 

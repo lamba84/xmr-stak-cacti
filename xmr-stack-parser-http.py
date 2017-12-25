@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 '''
 Cacti parser for xmr-stak  by fireice-uk.
 This version parse http web page, so it works with any version of xmr-stak once HTML report is configured open  
@@ -7,7 +6,8 @@ This version parse http web page, so it works with any version of xmr-stak once 
 
 REV: 0.1
 intial release
-
+REV: 0.2
+added try statment and fixed output when miner is stuck
 TO-DO:
 this parser will be discontinued once all XMR-stak version will use api/json output. expected by end of 2017
 '''
@@ -42,25 +42,13 @@ def get_rate(h_url): #get data for web interface version of xmr-stack miner, bas
     
     return matchObj[0][1]
 
-
-def get_rate_custom_compile(h_url): #get data for custom compiled web interface version of xmr-stack-cpu
-    try: 
-        page = requests.get(h_url)
-        matchObj = re.findall(r'<td.*?\class\="totals(.*?)">\ ([0-9]*.[0-9]*)\<', page.content)
-    except:
-        print "Zero"
-        exit()
-    print matchObj
-    rtn_str= matchObj[0][0]+":"+matchObj[0][1]+" "+matchObj[1][0]+":"+matchObj[1][1]+" "+matchObj[2][0]+":"+matchObj[2][1]
-    return rtn_str
-
 def get_rate_dev(h_url): #get data for web interface version of xmr-stack miner, dev version and return in format suitable for Cacti
     try: 
         page = requests.get(h_url)
         matchObj = re.findall(r'<th>(total.*?)</th><td> (.*?)</td><td> (.*?)</td><td> (.*?)</td></tr>', page.content, re.M|re.I|re.S)
         rtn_str= "total_2.5s:"+matchObj[0][1]+" "+"total_1m:"+matchObj[0][2]+" "+"total_15m:"+matchObj[0][3]
     except:
-        rtn_str="total_2.5s:0 total_1m:0 total_15m:0"
+        rtn_str="total_2.5s:0.0 total_1m:0.0 total_15m:0.0"
     
     return rtn_str
 

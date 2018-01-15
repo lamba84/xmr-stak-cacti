@@ -22,7 +22,7 @@ import json
 
 parser = argparse.ArgumentParser(description='XMR-stack hash rates parser')
 parser.add_argument('url', metavar='url', type=str,
-                    help='xmr-stack http url and port. Eg. 127.0.0.1:8081 ')
+                    help='xmr-stack-api <url and port>. Eg. 127.0.0.1:8081 ')
 
 
 args = parser.parse_args()
@@ -41,7 +41,7 @@ def get_rate_api(h_url):
         page= requests.get(h_url).json()
         #print json.dumps(page, sort_keys=True, indent=2, separators=(',', ': '))
         t_rates=page['hashrate']['total']
-        total=""
+        total=" "
         i=0
         for t in page['hashrate']['threads']:
             total=total+"tot%s:%s "%(i,t[0])

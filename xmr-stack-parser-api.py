@@ -40,15 +40,16 @@ def get_rate_api(h_url):
     try:
         page= requests.get(h_url).json()
         #print json.dumps(page, sort_keys=True, indent=2, separators=(',', ': '))
-        t_rates=page['hashrate']['total']
-        total=" "
+        total=page['hashrate']['total']
+        th=" "
         i=0
         for t in page['hashrate']['threads']:
-            total=total+"tot%s:%s "%(i,t[0])
+            th=th+"th%s:%s "%(i,t[0])
             i=i+1
         #rtn_str= "total_2.5s:%s total_1m:%s total_15m:%s" %(t_rates[0],t_rates[1],t_rates[2])
-        return total
+        res=th+"tot60s:%s"%(total[1])
+        return res
     except:
-        return "tot0:0.0"
+        return "th0:0.0 tot60s:0.0"
 
 print get_rate_api(hash_url)

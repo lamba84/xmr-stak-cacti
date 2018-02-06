@@ -1,18 +1,10 @@
 #!/usr/bin/python
 '''
 Cacti parser for xmr-stak  by fireice-uk.
-This version parse api/json web page, so it works only with xmr-stak-cpu for now  
+This version parse api/json request  
 @author: lamba84
-REV: 0.2
-return results by thread
-added try except in case of lost connection
-REV: 0.1
-intial release
-
-TO-DO:
-this parser will become the only mantained once all XMR-stak versions will use api/json output. expected by end of 2017
-
-@author: lamba84
+REV: 0.3
+fixed timeout issue in production
 '''
 
 import requests
@@ -38,7 +30,7 @@ else:
     
 def get_rate_api(h_url):
     try:
-        page= requests.get(h_url).json()
+        page= requests.get(h_url, timeout=2).json()
         #print json.dumps(page, sort_keys=True, indent=2, separators=(',', ': '))
         total=page['hashrate']['total']
         th=" "

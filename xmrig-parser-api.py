@@ -12,7 +12,7 @@ import re
 import argparse
 import json 
 
-mytoken="Bearer be8rinmindthisisatoken"
+mytoken="change this to your token"
 parser = argparse.ArgumentParser(description='XMR-stack hash rates parser')
 parser.add_argument('url', metavar='url', type=str,
                     help='xmrig-api <url and port>. Eg. 127.0.0.1:8081 ')

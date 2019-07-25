@@ -1,0 +1,22 @@
+basic help to rename DS in rrd and not lose data
+
+rrdtool tune mining1_xmr_api_34.rrd \
+DS:rate_th10:GAUGE:600:0:U \
+DS:rate_th11:GAUGE:600:0:U \
+-r xmr_rate_th0:rate_th0 \
+-r xmr_rate_th1:rate_th1 \
+-r xmr_rate_th2:rate_th2 \
+-r xmr_rate_th3:rate_th3 \
+-r xmr_rate_th4:rate_th4 \
+-r xmr_rate_th5:rate_th5 \
+-r xmr_rate_th6:rate_th6 \
+-r xmr_rate_th7:rate_th7 \
+-r xmr_rate_tot60s:rate_tot60s 
+
+#color chart for graphs
+00CF00
+8D85F3
+FFC73B
+2175D9
+FAFD9E
+00BED9
